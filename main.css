@@ -41,3 +41,21 @@ ul{
 #footer{
  width: 100;
 }
+
+.project-icon {
+  margin-top: 15px;
+  margin-left: 7px;
+}
+
+.overview-icon {
+  margin-top: 2px;
+  margin-left: 5px;
+}
+
+.project-link {
+  margin-left: 5px;
+}
+
+a:active {
+ border-bottom: 1px solid black;
+}
