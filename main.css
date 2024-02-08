@@ -1,5 +1,6 @@
 body{
   background-color: whitesmoke;
+  margin: 20px 100px 0px;
 }
 
 /* This will make it so all a tags are only blue/underlined when the cursor is hovering */
@@ -22,7 +23,7 @@ ul{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 20px 100px 0px;
+  /* margin: 20px 100px 0px; */
   gap: 24px;
 }
 
@@ -38,9 +39,6 @@ ul{
   object-fit: cover;
 }
 
-#footer{
- width: 100;
-}
 
 .project-icon {
   margin-top: 15px;
@@ -58,4 +56,10 @@ ul{
 
 a:active {
  border-bottom: 1px solid black;
+}
+
+.flex-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
