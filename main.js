@@ -1,28 +1,7 @@
 import { renderToDom } from "./utils/renderToDom.js";
 import { repoExamples } from "./data/complexData.js"
 
-
-const cardsOnDom = (array) => {
-  let repoExamplesDomString = "";
-array.map((repo) => {
-    repoExamplesDomString += 
-    `<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">${repo.name}</h5>
-      <p class="card-text">${repo.description}</p>
-      <span>${repo.tags[0].tName}</span>
-    </div>
-  </div>`
-  });
-      renderToDom("#listed-repos", repoExamplesDomString);
-};
-
-cardsOnDom(repoExamples)
-
-
-
-
-
+// keep this code at the top
 const sideBarOnDom = ()=>{
   let domString = `<div id="profile-area" style="width: 18rem;">
   <img src="https://pbs.twimg.com/profile_images/1323877428/the_office_nbc_tv_show_image_steve_carrol_as_michael_scott__1__400x400.jpg" class="card-img-top" alt="...">
@@ -143,11 +122,29 @@ const sideBarOnDom = ()=>{
 };
 
 sideBarOnDom();
-const startApp = () =>{
-  sideBarOnDom();
-}
+// const startApp = () =>{
+//   sideBarOnDom();
+// }
 
-startApp();
+// startApp();
+
+const cardsOnDom = (array) => {
+  let repoExamplesDomString = "";
+array.map((repo) => {
+    repoExamplesDomString += 
+    `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${repo.name}</h5>
+      <p class="card-text">${repo.description}</p>
+      <span>${repo.tags[0].tName}</span>
+    </div>
+  </div>`
+  });
+      renderToDom("#listed-repos", repoExamplesDomString);
+};
+
+cardsOnDom(repoExamples)
+
 
 const projects = [
   {
@@ -160,7 +157,6 @@ const projects = [
       "https://static.displate.com/857x1200/displate/2023-03-15/dadeeb74dcc7ed99f2da757226d69818_5670a0e43cfe81ada198f1864a784534.jpg",
   }
 ];
-
 
 const pinnedProjectsOnDom = (array) => {
   let projectsDomString = "";
