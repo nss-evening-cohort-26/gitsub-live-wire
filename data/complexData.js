@@ -1,4 +1,5 @@
-const repoExamples = [
+
+export const repoExamples = [
 
   {
     name: "Calculator",
