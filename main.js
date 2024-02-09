@@ -145,6 +145,62 @@ array.map((repo) => {
 
 cardsOnDom(repoExamples)
 
+const repoFormOnDom = () => {
+  let domFormString = `
+ <form id="addRepoForm">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Create a New Repository</label>
+    <h6>Repository Name *</h6>
+    <input type="text" id="repo-name" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+    <input type="text" class="form-control" id="exampleFormControlTextarea repo-d" rows="3"></input>
+    <button type="submit" id ="submit-r" class="submit-repo">Create Repository</button>
+  </div>
+</div>
+</form>`;
+    renderToDom("#create-repo-form", domFormString)
+};
+
+repoFormOnDom()
+
+
+
+// const repoFormEventListener = () => {
+  // const repoForm = document.getQuerySelector("#addRepoForm");
+  // const createNewRepo = (e) => {
+  //   e.preventDefault();
+  //   const newRepoObj = {
+  //     id: repoExamples.length + 1,
+  //     name: document.getQuerySelector("#repo-name").value,
+  //     description: document.getQuerySelector("#repo-d").value,
+  //   };
+  //   repoExamples.push(newRepoObj);
+  //   repoForm.reset();
+  //   cardsOnDom(repoExamples)
+  // };
+  // repoForm.addEventListener("submit", createNewRepo);
+  
+  // repoFormEventListener();
+  const createNewRepo = () => {
+    const newRepoObj = {
+      id: repoExamples.length + 1,
+      name: document.querySelector("#repo-name").value,
+      description: document.querySelector("#repo-d").value,
+    };
+    repoExamples.push(newRepoObj);
+    cardsOnDom(repoExamples)
+    repoForm.reset();
+  }
+
+  const repoForm = document.querySelector("create-repo-form")
+  repoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    createNewRepo();
+  });
+
+
 
 const projects = [
   {
