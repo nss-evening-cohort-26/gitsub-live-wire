@@ -282,7 +282,7 @@ form.addEventListener("submit", (e) => {
 //       renderToDom("#listed-repos", repoExamplesDomString);
 // };
 
-cardsOnDom(repoExamples)
+//cardsOnDom(repoExamples)
 // cardsOnDom(repoExamples)
 
 // const repoFormOnDom = () => {
