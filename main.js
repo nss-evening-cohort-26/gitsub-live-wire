@@ -122,6 +122,43 @@ const sideBarOnDom = ()=>{
 };
 sideBarOnDom();
 
+const projects = [
+  {
+    id: 1,
+    title: "Example 1",
+    description: "No description",
+    lastUpdated: "7 seconds ago"
+  },
+  {
+    id: 2,
+    title: "my-goals",
+    description: "No description",
+    lastUpdated: "4 hours ago"
+  },
+  {
+    id: 3,
+    title: "Sample My Goals",
+    description: "Goals for the NSS Bootcamp",
+    lastUpdated: "1 minute ago"
+  }
+];
+
+const pinnedProjectsOnDom = (array) => {
+  let projectsDomString = "3 Open 0 Closed";
+  array.map((project) => {
+    projectsDomString += `<div class="card" style="width: 18rem;">
+    <h5 class="card-title">${project.title}</h5>
+    <div class="card-body">
+    <p class="card-text"> ${project.description}</p>
+    <p class="card-text">Last Updated ${project.lastUpdated}</p>
+  </div>
+</div>`;
+});
+renderToDom("#appProjects", projectsDomString);
+};
+
+pinnedProjectsOnDom(projects);
+
 // Render pinned repos to DOM
 const pinnedOnDom = (array) =>{
   let pinnedString = "";
@@ -195,35 +232,3 @@ array.map((repo) => {
 };
 
 cardsOnDom(repoExamples)
-
-
-const projects = [
-  {
-    id: 1,
-    name: "Dusty",
-    color: "Green",
-    specialSkill: "Gives sincere apologies.",
-    type: "cat",
-    imageUrl:
-      "https://static.displate.com/857x1200/displate/2023-03-15/dadeeb74dcc7ed99f2da757226d69818_5670a0e43cfe81ada198f1864a784534.jpg",
-  }
-];
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "";
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
-    <h5 class="card-title">${project.name}</h5>
-    <img src="${project.imageUrl}" 
-    class="card-img-top" alt="...">
-    <div class="card-body">
-    <p class="card-text">Color: ${project.color}</p>
-    <p class="card-text">Special Skill: ${project.specialSkill}</p>
-    <p class="card-text">${project.type}</p>
-  </div>
-</div>`;
-});
-renderToDom("#appProjects", projectsDomString);
-};
-
-pinnedProjectsOnDom(projects);
