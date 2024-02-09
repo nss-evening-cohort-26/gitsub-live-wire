@@ -167,22 +167,6 @@ repoFormOnDom()
 
 
 
-// const repoFormEventListener = () => {
-  // const repoForm = document.getQuerySelector("#addRepoForm");
-  // const createNewRepo = (e) => {
-  //   e.preventDefault();
-  //   const newRepoObj = {
-  //     id: repoExamples.length + 1,
-  //     name: document.getQuerySelector("#repo-name").value,
-  //     description: document.getQuerySelector("#repo-d").value,
-  //   };
-  //   repoExamples.push(newRepoObj);
-  //   repoForm.reset();
-  //   cardsOnDom(repoExamples)
-  // };
-  // repoForm.addEventListener("submit", createNewRepo);
-  
-  // repoFormEventListener();
   const createNewRepo = () => {
     const newRepoObj = {
       id: repoExamples.length + 1,
