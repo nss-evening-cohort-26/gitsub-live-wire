@@ -1,7 +1,7 @@
 import { renderToDom } from "./utils/renderToDom.js";
 import { repoExamples } from "./data/complexData.js"
 
-// keep this code at the top
+// keep this code at the top. Renders profile to DOM
 const sideBarOnDom = ()=>{
   let domString = `<div id="profile-area" style="width: 18rem;">
   <img src="https://pbs.twimg.com/profile_images/1323877428/the_office_nbc_tv_show_image_steve_carrol_as_michael_scott__1__400x400.jpg" class="card-img-top" alt="...">
@@ -120,13 +120,64 @@ const sideBarOnDom = ()=>{
   renderToDom("#layout-sidebar", domString);
   console.log("hello")
 };
-
 sideBarOnDom();
-// const startApp = () =>{
-//   sideBarOnDom();
-// }
 
-// startApp();
+// Render pinned repos to DOM
+const pinnedOnDom = (array) =>{
+  let pinnedString = "";
+  array.forEach((pin) =>{
+    pinnedString += ` <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">${pin.name}</h5>
+        <p class="card-text">${pin.description}</p>
+        <p>
+          <span>Name of Language</span>
+          <a>Star</a>
+          <a>Fork</a>
+        </p>
+      </div>
+    </div>
+  </div>`;
+  });
+  renderToDom("#pinned-repos", pinnedString);
+};
+pinnedOnDom(repoExamples)
+
+// render form on the DOM
+const pinnedFormOnDom = () =>{
+  let pinnedFormString =`<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Repository name</label>
+  <input type="text" class="form-control" id="pinned_name" placeholder="Name">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+  <input type="text" class="form-control" id="pinned_description" placeholder="Description">
+  <button type="submit" class="btn btn-primary pinned-btn" id="pinnedBtn">Pin!</button>
+</div>`
+renderToDom("#create-pinned-form", pinnedFormString)
+}
+pinnedFormOnDom();
+
+// will create a new repo that is pinned 
+const createPinnedRepo = () =>{
+  const newPinnedObj = {
+    id: repoExamples.length + 1,
+    name: document.querySelector("#pinned_name").value,
+    description: document.querySelector("#pinned_description").value
+  }
+  repoExamples.push(newPinnedObj);
+  pinnedOnDom(repoExamples);
+  form.reset();
+  console.log("submitting");
+}
+
+// event listener for my form tag in HTML will reset the form and call the create function 
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  createPinnedRepo()
+});
 
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
