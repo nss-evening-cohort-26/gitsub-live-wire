@@ -122,6 +122,43 @@ const sideBarOnDom = ()=>{
 };
 sideBarOnDom();
 
+const projects = [
+  {
+    id: 1,
+    title: "Example 1",
+    description: "No description",
+    lastUpdated: "7 seconds ago"
+  },
+  {
+    id: 2,
+    title: "my-goals",
+    description: "No description",
+    lastUpdated: "4 hours ago"
+  },
+  {
+    id: 3,
+    title: "Sample My Goals",
+    description: "Goals for the NSS Bootcamp",
+    lastUpdated: "1 minute ago"
+  }
+];
+
+const pinnedProjectsOnDom = (array) => {
+  let projectsDomString = "3 Open 0 Closed";
+  array.map((project) => {
+    projectsDomString += `<div class="card" style="width: 18rem;">
+    <h5 class="card-title">${project.title}</h5>
+    <div class="card-body">
+    <p class="card-text"> ${project.description}</p>
+    <p class="card-text">Last Updated ${project.lastUpdated}</p>
+  </div>
+</div>`;
+});
+renderToDom("#appProjects", projectsDomString);
+};
+
+pinnedProjectsOnDom(projects);
+
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
 array.map((repo) => {
@@ -245,6 +282,7 @@ form.addEventListener("submit", (e) => {
 //       renderToDom("#listed-repos", repoExamplesDomString);
 // };
 
+cardsOnDom(repoExamples)
 // cardsOnDom(repoExamples)
 
 // const repoFormOnDom = () => {
