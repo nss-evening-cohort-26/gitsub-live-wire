@@ -142,9 +142,9 @@ const projects = [
     lastUpdated: "1 minute ago"
   }
 ];
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "3 Open 0 Closed";
+//Renders Projects to DOM
+const projectsOnDom = (array) => {
+  let projectsDomString = "3 Open 0 closed";
   array.map((project) => {
     projectsDomString += `<div class="card" style="width: 18rem;">
     <h5 class="card-title">${project.title}</h5>
@@ -156,13 +156,55 @@ const pinnedProjectsOnDom = (array) => {
 });
 renderToDom("#appProjects", projectsDomString);
 };
+projectsOnDom(projects);
 
-pinnedProjectsOnDom(projects);
+//Project Form appears
+const projectForm = () =>{
+  let formString =`<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Project board name</label>
+  <input type="text" class="form-control" id="pForm_name" placeholder="Name">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControl" class="form-label">Description (optional)</label>
+  <textarea class="form-control" id="pForm_description" placeholder="Description"></textarea>
+  <button type="submit" class="btn btn-success pinned-btn" id="projectButton">Create project</button>
+</div>`
+renderToDom("#create-project-form", formString)
+//add the event listener after appending the button to the DOM
+const projectButton = document.querySelector("#projectButton");
+projectButton.addEventListener("click", () => {
+  console.log("click");
+  newProject();
+});
+}
+projectForm();
+
+//create a function that grabs all the values from the form, pushes the new object to the array, 
+//then repaints the DOM with the new project
+const newProject = () => {
+  const form = document.querySelector("create-project-form form");
+    const newProjectObject = {
+      id: projects.length + 1,
+      title: document.querySelector("#pForm_name").value,
+      description: document.querySelector("#pForm_description").value,
+      lastUpdated: "Just now"
+    }
+  projects.push(newProjectObject);
+  projectsOnDom(projects);
+  form.reset();
+  }
+  
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    newProject()
+  });
+
+
 
 // Render pinned repos to DOM
-const pinnedOnDom = (array) =>{
+function pinnedOnDom(array) {
   let pinnedString = "";
-  array.forEach((pin) =>{
+  array.forEach((pin) => {
     pinnedString += ` <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
@@ -178,7 +220,7 @@ const pinnedOnDom = (array) =>{
   </div>`;
   });
   renderToDom("#pinned-repos", pinnedString);
-};
+}
 pinnedOnDom(repoExamples)
 
 // render form on the DOM
