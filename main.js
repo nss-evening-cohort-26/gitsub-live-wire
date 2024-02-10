@@ -122,43 +122,6 @@ const sideBarOnDom = ()=>{
 };
 sideBarOnDom();
 
-const projects = [
-  {
-    id: 1,
-    title: "Example 1",
-    description: "No description",
-    lastUpdated: "7 seconds ago"
-  },
-  {
-    id: 2,
-    title: "my-goals",
-    description: "No description",
-    lastUpdated: "4 hours ago"
-  },
-  {
-    id: 3,
-    title: "Sample My Goals",
-    description: "Goals for the NSS Bootcamp",
-    lastUpdated: "1 minute ago"
-  }
-];
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "3 Open 0 Closed";
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
-    <h5 class="card-title">${project.title}</h5>
-    <div class="card-body">
-    <p class="card-text"> ${project.description}</p>
-    <p class="card-text">Last Updated ${project.lastUpdated}</p>
-  </div>
-</div>`;
-});
-renderToDom("#appProjects", projectsDomString);
-};
-
-pinnedProjectsOnDom(projects);
-
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
 array.map((repo) => {
@@ -173,8 +136,7 @@ array.map((repo) => {
   });
       renderToDom("#listed-repos", repoExamplesDomString);
 };
-
-cardsOnDom(repoExamples)
+// cardsOnDom(repoExamples)
 
 const repoFormOnDom = () => {
   let domFormString = 
@@ -190,10 +152,9 @@ const repoFormOnDom = () => {
 ;
     renderToDom("#create-repo-form", domFormString)
 };
+// repoFormOnDom()
 
-repoFormOnDom()
-
-  const createNewRepo = () => {
+const createNewRepo = () => {
     const newRepoObj = {
       id: repoExamples.length + 1,
       name: document.querySelector("#repo_name").value,
@@ -204,11 +165,11 @@ repoFormOnDom()
     repoForm.reset();
   }
 
-  const repoForm = document.querySelector("create-repo-form")
-  repoForm.addEventListener("submit", (e) => {
+const repoForm = document.querySelector("create-repo-form")
+repoForm.addEventListener("submit", (e) => {
     e.preventDefault();
     createNewRepo()
-  });
+});
 
 // Render pinned repos to DOM
 const pinnedOnDom = (array) =>{
@@ -230,7 +191,7 @@ const pinnedOnDom = (array) =>{
   });
   renderToDom("#pinned-repos", pinnedString);
 };
-pinnedOnDom(repoExamples)
+// pinnedOnDom(repoExamples)
 
 // render form on the DOM
 const pinnedFormOnDom = () =>{
@@ -245,7 +206,7 @@ const pinnedFormOnDom = () =>{
 </div>`
 renderToDom("#create-pinned-form", pinnedFormString)
 }
-pinnedFormOnDom();
+// pinnedFormOnDom();
 
 // will create a new repo that is pinned 
 const createPinnedRepo = () =>{
@@ -264,68 +225,8 @@ const createPinnedRepo = () =>{
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  
   createPinnedRepo()
 });
-
-// const cardsOnDom = (array) => {
-//   let repoExamplesDomString = "";
-// array.map((repo) => {
-//     repoExamplesDomString += 
-//     `<div class="card" style="width: 18rem;">
-//     <div class="card-body">
-//       <h5 class="card-title">${repo.name}</h5>
-//       <p class="card-text">${repo.description}</p>
-//       <span>${repo.tags[0].tName}</span>
-//     </div>
-//   </div>`
-//   });
-//       renderToDom("#listed-repos", repoExamplesDomString);
-// };
-
-//cardsOnDom(repoExamples)
-// cardsOnDom(repoExamples)
-
-// const repoFormOnDom = () => {
-//   let domFormString = `
-//  <form id="addRepoForm">
-//   <div class="mb-3">
-//     <label for="exampleFormControlInput1" class="form-label">Create a New Repository</label>
-//     <h6>Repository Name *</h6>
-//     <input type="text" id="repo-name" class="form-control">
-//   </div>
-//   <div class="mb-3">
-//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-//     <input type="text" class="form-control" id="exampleFormControlTextarea repo-d" rows="3"></input>
-//     <button type="submit" id ="submit-r" class="submit-repo">Create Repository</button>
-//   </div>
-// </div>
-// </form>`;
-//     renderToDom("#create-repo-form", domFormString)
-// };
-
-// repoFormOnDom()
-
-
-
-  // const createNewRepo = () => {
-  //   const newRepoObj = {
-  //     id: repoExamples.length + 1,
-  //     name: document.querySelector("#repo-name").value,
-  //     description: document.querySelector("#repo-d").value,
-  //   };
-  //   repoExamples.push(newRepoObj);
-  //   cardsOnDom(repoExamples)
-  //   repoForm.reset();
-  // }
-
-  // const repoForm = document.querySelector("create-repo-form")
-  // repoForm.addEventListener("submit", (e) => {
-  //   e.preventDefault();
-  //   createNewRepo();
-  // });
-
-
 
 const projects = [
   {
@@ -355,5 +256,23 @@ const pinnedProjectsOnDom = (array) => {
 });
 renderToDom("#appProjects", projectsDomString);
 };
+// pinnedProjectsOnDom(projects);
 
-pinnedProjectsOnDom(projects);
+
+document.addEventListener('DOMContentLoaded', () => {
+  sideBarOnDom();
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
+});
+
+const startApp= ()=>{
+if (document.URL.includes("index.html")) {
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
+}if (document.URL.includes("project.html")) {
+  pinnedProjectsOnDom(projects);
+} else{
+  pinnedProjectsOnDom(projects);
+}
+}
+startApp()
