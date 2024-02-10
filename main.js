@@ -215,7 +215,16 @@ array.map((repo) => {
     <div class="card-body">
       <h5 class="card-title">${repo.name}</h5>
       <p class="card-text">${repo.description}</p>
-      <span>${repo.tags[0].tName}</span>
+      ${repo.language ? `<p class="card-text" style="background-color: ${
+        repo.language === "Javascript"
+        ? "#f1e05a"
+        :repo.language === "HTML"
+        ? "#e34c26"
+        :repo.language === "CSS"
+        ? "#41b883"
+        : " "
+      }">${repo.language}</p>` : ""}  
+      ${repo.tags ? `<span>${repo.tags[0].tName}</span>` : ""}
     </div>
   </div>`
   });
@@ -236,7 +245,7 @@ const repoFormOnDom = () => {
   <button type="submit" class="btn btn-primary" id="cRepoBtn">Create Repository</button>
 </div>`
 ;
-    renderToDom("#create-repo-form", domFormString)
+    renderToDom("#repo-form", domFormString)
 };
 // repoFormOnDom()
 
@@ -246,13 +255,16 @@ const createNewRepo = () => {
       id: repoExamples.length + 1,
       name: document.querySelector("#repo_name").value,
       description: document.querySelector("#repo_description").value,
+      language: "",
+      tag: [],
     };
     repoExamples.push(newRepoObj);
     cardsOnDom(repoExamples)
     repoForm.reset();
   }
-const repoForm = document.querySelector("create-repo-form")
-repoForm.addEventListener("submit", (e) => {
+
+  const repoForm = document.querySelector('#repo-form')
+  repoForm.addEventListener("submit", (e) => {
     e.preventDefault();
     createNewRepo()
 });
