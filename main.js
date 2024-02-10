@@ -140,24 +140,77 @@ const projects = [
     title: "Sample My Goals",
     description: "Goals for the NSS Bootcamp",
     lastUpdated: "1 minute ago"
+  },
+  {
+    id: 4,
+    title: "Live Wire",
+    description: "First project board with group",
+    lastUpdated: "7 hours ago"
+  },
+  {
+    id: 5,
+    title: "Array methods",
+    description: "Someone gives you a key and a number, you have cargo pants with associated numbers on them, put the key in there",
+    lastUpdated: "12 days ago"
   }
 ];
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "3 Open 0 Closed";
+//Renders Projects to DOM
+const projectsOnDom = (array) => {
+  let projectsDomString = "3 Open 0 closed";
   array.map((project) => {
     projectsDomString += `<div class="card" style="width: 18rem;">
     <h5 class="card-title">${project.title}</h5>
     <div class="card-body">
     <p class="card-text"> ${project.description}</p>
     <p class="card-text">Last Updated ${project.lastUpdated}</p>
+    <button class="btn btn-danger" id="star" class="starBtn">...</button>
   </div>
 </div>`;
 });
 renderToDom("#appProjects", projectsDomString);
 };
+projectsOnDom(projects);
 
-pinnedProjectsOnDom(projects);
+//Project Form appears
+const projectForm = () =>{
+  let formString =`<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Project board name</label>
+  <input type="text" class="form-control" id="pForm_name" placeholder="Name">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControl" class="form-label">Description (optional)</label>
+  <textarea class="form-control" id="pForm_description" placeholder="Description"></textarea>
+  <button type="submit" class="btn btn-success pinned-btn" id="projectButton">Create project</button>
+</div>`
+renderToDom("#create-project-form", formString)
+};
+  
+const projForm = document.querySelector("#create-project-form");
+  projForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    newProject()
+    
+  });
+
+projectForm();
+
+//create a function that grabs all the values from the form, pushes the new object to the array, 
+//then repaints the DOM with the new project
+const newProject = () => {
+ 
+    const newProjectObject = {
+      id: projects.length + 1,
+      title: document.querySelector("#pForm_name").value,
+      description: document.querySelector("#pForm_description").value,
+      lastUpdated: "Just now"
+    }
+  projects.push(newProjectObject);
+  projectsOnDom(projects);
+  projForm.reset();
+  }
+  
+
+
 
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
@@ -211,9 +264,9 @@ repoFormOnDom()
   });
 
 // Render pinned repos to DOM
-const pinnedOnDom = (array) =>{
+function pinnedOnDom(array) {
   let pinnedString = "";
-  array.forEach((pin) =>{
+  array.forEach((pin) => {
     pinnedString += ` <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
@@ -229,7 +282,7 @@ const pinnedOnDom = (array) =>{
   </div>`;
   });
   renderToDom("#pinned-repos", pinnedString);
-};
+}
 pinnedOnDom(repoExamples)
 
 // render form on the DOM
@@ -326,17 +379,7 @@ form.addEventListener("submit", (e) => {
 
 
 
-const projects = [
-  {
-    id: 1,
-    name: "Dusty",
-    color: "Green",
-    specialSkill: "Gives sincere apologies.",
-    type: "cat",
-    imageUrl:
-      "https://static.displate.com/857x1200/displate/2023-03-15/dadeeb74dcc7ed99f2da757226d69818_5670a0e43cfe81ada198f1864a784534.jpg",
-  }
-];
+
 
 const pinnedProjectsOnDom = (array) => {
   let projectsDomString = "";
