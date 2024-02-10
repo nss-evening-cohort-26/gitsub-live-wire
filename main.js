@@ -140,6 +140,18 @@ const projects = [
     title: "Sample My Goals",
     description: "Goals for the NSS Bootcamp",
     lastUpdated: "1 minute ago"
+  },
+  {
+    id: 4,
+    title: "Live Wire",
+    description: "First project board with group",
+    lastUpdated: "7 hours ago"
+  },
+  {
+    id: 5,
+    title: "Array methods",
+    description: "Someone gives you a key and a number, you have cargo pants with associated numbers on them, put the key in there",
+    lastUpdated: "12 days ago"
   }
 ];
 //Renders Projects to DOM
@@ -151,6 +163,7 @@ const projectsOnDom = (array) => {
     <div class="card-body">
     <p class="card-text"> ${project.description}</p>
     <p class="card-text">Last Updated ${project.lastUpdated}</p>
+    <button class="btn btn-danger" id="star" class="starBtn">...</button>
   </div>
 </div>`;
 });
@@ -170,19 +183,21 @@ const projectForm = () =>{
   <button type="submit" class="btn btn-success pinned-btn" id="projectButton">Create project</button>
 </div>`
 renderToDom("#create-project-form", formString)
-//add the event listener after appending the button to the DOM
-const projectButton = document.querySelector("#projectButton");
-projectButton.addEventListener("click", () => {
-  console.log("click");
-  newProject();
-});
-}
+};
+  
+const projForm = document.querySelector("#create-project-form");
+  projForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    newProject()
+    
+  });
+
 projectForm();
 
 //create a function that grabs all the values from the form, pushes the new object to the array, 
 //then repaints the DOM with the new project
 const newProject = () => {
-  const form = document.querySelector("create-project-form form");
+ 
     const newProjectObject = {
       id: projects.length + 1,
       title: document.querySelector("#pForm_name").value,
@@ -191,15 +206,62 @@ const newProject = () => {
     }
   projects.push(newProjectObject);
   projectsOnDom(projects);
-  form.reset();
+  projForm.reset();
   }
   
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    newProject()
+
+
+
+const cardsOnDom = (array) => {
+  let repoExamplesDomString = "";
+array.map((repo) => {
+    repoExamplesDomString += 
+    `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${repo.name}</h5>
+      <p class="card-text">${repo.description}</p>
+      <span>${repo.tags[0].tName}</span>
+    </div>
+  </div>`
   });
+      renderToDom("#listed-repos", repoExamplesDomString);
+};
 
+cardsOnDom(repoExamples)
 
+const repoFormOnDom = () => {
+  let domFormString = 
+  `<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Create a New Repository </label>
+  <input type="text" class="form-control" id="repo_name" placeholder="Name">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+  <input type="text" class="form-control" id="repo_description" placeholder="Description">
+  <button type="submit" class="btn btn-primary" id="cRepoBtn">Create Repository</button>
+</div>`
+;
+    renderToDom("#create-repo-form", domFormString)
+};
+
+repoFormOnDom()
+
+  const createNewRepo = () => {
+    const newRepoObj = {
+      id: repoExamples.length + 1,
+      name: document.querySelector("#repo_name").value,
+      description: document.querySelector("#repo_description").value,
+    };
+    repoExamples.push(newRepoObj);
+    cardsOnDom(repoExamples)
+    repoForm.reset();
+  }
+
+  const repoForm = document.querySelector("create-repo-form")
+  repoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    createNewRepo()
+  });
 
 // Render pinned repos to DOM
 function pinnedOnDom(array) {
@@ -258,19 +320,82 @@ form.addEventListener("submit", (e) => {
   createPinnedRepo()
 });
 
-const cardsOnDom = (array) => {
-  let repoExamplesDomString = "";
-array.map((repo) => {
-    repoExamplesDomString += 
-    `<div class="card" style="width: 18rem;">
+// const cardsOnDom = (array) => {
+//   let repoExamplesDomString = "";
+// array.map((repo) => {
+//     repoExamplesDomString += 
+//     `<div class="card" style="width: 18rem;">
+//     <div class="card-body">
+//       <h5 class="card-title">${repo.name}</h5>
+//       <p class="card-text">${repo.description}</p>
+//       <span>${repo.tags[0].tName}</span>
+//     </div>
+//   </div>`
+//   });
+//       renderToDom("#listed-repos", repoExamplesDomString);
+// };
+
+//cardsOnDom(repoExamples)
+// cardsOnDom(repoExamples)
+
+// const repoFormOnDom = () => {
+//   let domFormString = `
+//  <form id="addRepoForm">
+//   <div class="mb-3">
+//     <label for="exampleFormControlInput1" class="form-label">Create a New Repository</label>
+//     <h6>Repository Name *</h6>
+//     <input type="text" id="repo-name" class="form-control">
+//   </div>
+//   <div class="mb-3">
+//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+//     <input type="text" class="form-control" id="exampleFormControlTextarea repo-d" rows="3"></input>
+//     <button type="submit" id ="submit-r" class="submit-repo">Create Repository</button>
+//   </div>
+// </div>
+// </form>`;
+//     renderToDom("#create-repo-form", domFormString)
+// };
+
+// repoFormOnDom()
+
+
+
+  // const createNewRepo = () => {
+  //   const newRepoObj = {
+  //     id: repoExamples.length + 1,
+  //     name: document.querySelector("#repo-name").value,
+  //     description: document.querySelector("#repo-d").value,
+  //   };
+  //   repoExamples.push(newRepoObj);
+  //   cardsOnDom(repoExamples)
+  //   repoForm.reset();
+  // }
+
+  // const repoForm = document.querySelector("create-repo-form")
+  // repoForm.addEventListener("submit", (e) => {
+  //   e.preventDefault();
+  //   createNewRepo();
+  // });
+
+
+
+
+
+const pinnedProjectsOnDom = (array) => {
+  let projectsDomString = "";
+  array.map((project) => {
+    projectsDomString += `<div class="card" style="width: 18rem;">
+    <h5 class="card-title">${project.name}</h5>
+    <img src="${project.imageUrl}" 
+    class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">${repo.name}</h5>
-      <p class="card-text">${repo.description}</p>
-      <span>${repo.tags[0].tName}</span>
-    </div>
-  </div>`
-  });
-      renderToDom("#listed-repos", repoExamplesDomString);
+    <p class="card-text">Color: ${project.color}</p>
+    <p class="card-text">Special Skill: ${project.specialSkill}</p>
+    <p class="card-text">${project.type}</p>
+  </div>
+</div>`;
+});
+renderToDom("#appProjects", projectsDomString);
 };
 
-cardsOnDom(repoExamples)
+pinnedProjectsOnDom(projects);
