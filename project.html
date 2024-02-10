@@ -39,7 +39,11 @@
         </nav>
       </div>
       <div id="appProjects"></div>
-      <div id="create-project-form">
+      <div>
+        <form id="create-project-form" class="project-form">
+        </form>
+      </div>
+      
  
       </div>
     </div>
@@ -100,3 +104,18 @@
   <script type="module" src="main.js"></script>
 </body>
 </html>
+
+<!-- 
+const projectForm = () =>{
+  let formString =`<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Project board name</label>
+  <input type="text" class="form-control" id="pinned_name" placeholder="Name">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Description (optional)</label>
+  <input type="text" class="form-control" id="pinned_description" placeholder="Description">
+  <button type="submit" class="btn btn-primary pinned-btn" id="pinnedBtn">Pin!</button>
+</div>`
+renderToDom("#create-project-form", formString)
+}
+projectForm(); -->

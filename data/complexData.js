@@ -16,7 +16,7 @@ export const repoExamples = [
     id: 2, 
     name: "Pet Adoption",
     description: "An app to render cards on the DOM and filter the cards specific to each pet. Able to add and delete pets.",
-    language: "Javascript",
+    language: "JavaScript",
     tags: [
       {
         tName: "Class Project"

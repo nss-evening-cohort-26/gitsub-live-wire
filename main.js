@@ -30,7 +30,7 @@ const sideBarOnDom = ()=>{
     <a href="">
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star color-fg-muted">
         <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
-    </svg>
+      </svg>
       <span class="stars"><b>329</b></span>
     </a>
   </div>
@@ -122,43 +122,91 @@ const sideBarOnDom = ()=>{
 };
 sideBarOnDom();
 
-// const projects = [
-//   {
-//     id: 1,
-//     title: "Example 1",
-//     description: "No description",
-//     lastUpdated: "7 seconds ago"
-//   },
-//   {
-//     id: 2,
-//     title: "my-goals",
-//     description: "No description",
-//     lastUpdated: "4 hours ago"
-//   },
-//   {
-//     id: 3,
-//     title: "Sample My Goals",
-//     description: "Goals for the NSS Bootcamp",
-//     lastUpdated: "1 minute ago"
-//   }
-// ];
+const projects = [
+  {
+    id: 1,
+    title: "Example 1",
+    description: "No description",
+    lastUpdated: "7 seconds ago"
+  },
+  {
+    id: 2,
+    title: "my-goals",
+    description: "No description",
+    lastUpdated: "4 hours ago"
+  },
+  {
+    id: 3,
+    title: "Sample My Goals",
+    description: "Goals for the NSS Bootcamp",
+    lastUpdated: "1 minute ago"
+  },
+  {
+    id: 4,
+    title: "Live Wire",
+    description: "First project board with group",
+    lastUpdated: "7 hours ago"
+  },
+  {
+    id: 5,
+    title: "Array methods",
+    description: "Someone gives you a key and a number, you have cargo pants with associated numbers on them, put the key in there",
+    lastUpdated: "12 days ago"
+  }
+];
+//Renders Projects to DOM
+const projectsOnDom = (array) => {
+  let projectsDomString = "3 Open 0 closed";
+  array.map((project) => {
+    projectsDomString += `<div class="card" style="width: 18rem;">
+    <h5 class="card-title">${project.title}</h5>
+    <div class="card-body">
+    <p class="card-text"> ${project.description}</p>
+    <p class="card-text">Last Updated ${project.lastUpdated}</p>
+    <button class="btn btn-danger" id="star" class="starBtn">...</button>
+  </div>
+</div>`;
+});
+renderToDom("#appProjects", projectsDomString);
+};
+// projectsOnDom(projects);
 
-// const pinnedProjectsOnDom = (array) => {
-//   let projectsDomString = "3 Open 0 Closed";
-//   array.map((project) => {
-//     projectsDomString += `<div class="card" style="width: 18rem;">
-//     <h5 class="card-title">${project.title}</h5>
-//     <div class="card-body">
-//     <p class="card-text"> ${project.description}</p>
-//     <p class="card-text">Last Updated ${project.lastUpdated}</p>
-//   </div>
-// </div>`;
-// });
-// renderToDom("#appProjects", projectsDomString);
-// };
+//Project Form appears
+const projectForm = () =>{
+  let formString =`<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Project board name</label>
+  <input type="text" class="form-control" id="pForm_name" placeholder="Name">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControl" class="form-label">Description (optional)</label>
+  <textarea class="form-control" id="pForm_description" placeholder="Description"></textarea>
+  <button type="submit" class="btn btn-success pinned-btn" id="projectButton">Create project</button>
+</div>`
+renderToDom("#create-project-form", formString)
+};  
+const projForm = document.querySelector("#create-project-form");
+  projForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    newProject()
+    
+  });
+// projectForm();
 
-// pinnedProjectsOnDom(projects);
+//create a function that grabs all the values from the form, pushes the new object to the array, 
+//then repaints the DOM with the new project
+const newProject = () => {
+    const newProjectObject = {
+      id: projects.length + 1,
+      title: document.querySelector("#pForm_name").value,
+      description: document.querySelector("#pForm_description").value,
+      lastUpdated: "Just now"
+    }
+  projects.push(newProjectObject);
+  projectsOnDom(projects);
+  projForm.reset();
+  }
 
+// Repos on DOM for repos page 
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
 array.map((repo) => {
@@ -182,11 +230,9 @@ array.map((repo) => {
   });
       renderToDom("#listed-repos", repoExamplesDomString);
 };
-cardsOnDom(repoExamples)
+// cardsOnDom(repoExamples)
 
-
-
-
+// renders form for repo page
 const repoFormOnDom = () => {
   let domFormString = 
   `<div class="mb-3">
@@ -201,10 +247,10 @@ const repoFormOnDom = () => {
 ;
     renderToDom("#repo-form", domFormString)
 };
+// repoFormOnDom()
 
-repoFormOnDom()
-
-  const createNewRepo = () => {
+// created bew reos for repo page
+const createNewRepo = () => {
     const newRepoObj = {
       id: repoExamples.length + 1,
       name: document.querySelector("#repo_name").value,
@@ -221,7 +267,7 @@ repoFormOnDom()
   repoForm.addEventListener("submit", (e) => {
     e.preventDefault();
     createNewRepo()
-  });
+});
 
 // Render pinned repos to DOM
 const pinnedOnDom = (array) =>{
@@ -242,8 +288,8 @@ const pinnedOnDom = (array) =>{
   </div>`;
   });
   renderToDom("#pinned-repos", pinnedString);
-};
-pinnedOnDom(repoExamples)
+}
+// pinnedOnDom(repoExamples)
 
 // render form on the DOM
 const pinnedFormOnDom = () =>{
@@ -258,7 +304,7 @@ const pinnedFormOnDom = () =>{
 </div>`
 renderToDom("#create-pinned-form", pinnedFormString)
 }
-pinnedFormOnDom();
+// pinnedFormOnDom();
 
 // will create a new repo that is pinned 
 const createPinnedRepo = () =>{
@@ -272,7 +318,6 @@ const createPinnedRepo = () =>{
   form.reset();
   console.log("submitting");
 }
-
 // event listener for my form tag in HTML will reset the form and call the create function 
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
@@ -281,39 +326,22 @@ form.addEventListener("submit", (e) => {
 });
 
 
-
-cardsOnDom(repoExamples)
-
-
-
-
-const projects = [
-  {
-    id: 1,
-    name: "Dusty",
-    color: "Green",
-    specialSkill: "Gives sincere apologies.",
-    type: "cat",
-    imageUrl:
-      "https://static.displate.com/857x1200/displate/2023-03-15/dadeeb74dcc7ed99f2da757226d69818_5670a0e43cfe81ada198f1864a784534.jpg",
-  }
-];
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "";
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
-    <h5 class="card-title">${project.name}</h5>
-    <img src="${project.imageUrl}" 
-    class="card-img-top" alt="...">
-    <div class="card-body">
-    <p class="card-text">Color: ${project.color}</p>
-    <p class="card-text">Special Skill: ${project.specialSkill}</p>
-    <p class="card-text">${project.type}</p>
-  </div>
-</div>`;
+document.addEventListener('DOMContentLoaded', () => {
+  sideBarOnDom();
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
 });
-renderToDom("#appProjects", projectsDomString);
-};
 
-pinnedProjectsOnDom(projects);
+const startApp= ()=>{
+if (document.URL.includes("index.html")) {
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
+}if (document.URL.includes("project.html")) {
+  projectsOnDom(projects);
+  projectForm();;
+} else{
+  cardsOnDom(repoExamples);
+  repoFormOnDom()
+}
+}
+startApp()
