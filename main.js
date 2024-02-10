@@ -122,63 +122,83 @@ const sideBarOnDom = ()=>{
 };
 sideBarOnDom();
 
-const projects = [
-  {
-    id: 1,
-    title: "Example 1",
-    description: "No description",
-    lastUpdated: "7 seconds ago"
-  },
-  {
-    id: 2,
-    title: "my-goals",
-    description: "No description",
-    lastUpdated: "4 hours ago"
-  },
-  {
-    id: 3,
-    title: "Sample My Goals",
-    description: "Goals for the NSS Bootcamp",
-    lastUpdated: "1 minute ago"
-  }
-];
+// const projects = [
+//   {
+//     id: 1,
+//     title: "Example 1",
+//     description: "No description",
+//     lastUpdated: "7 seconds ago"
+//   },
+//   {
+//     id: 2,
+//     title: "my-goals",
+//     description: "No description",
+//     lastUpdated: "4 hours ago"
+//   },
+//   {
+//     id: 3,
+//     title: "Sample My Goals",
+//     description: "Goals for the NSS Bootcamp",
+//     lastUpdated: "1 minute ago"
+//   }
+// ];
 
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "3 Open 0 Closed";
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
-    <h5 class="card-title">${project.title}</h5>
-    <div class="card-body">
-    <p class="card-text"> ${project.description}</p>
-    <p class="card-text">Last Updated ${project.lastUpdated}</p>
-  </div>
-</div>`;
-});
-renderToDom("#appProjects", projectsDomString);
-};
+// const pinnedProjectsOnDom = (array) => {
+//   let projectsDomString = "3 Open 0 Closed";
+//   array.map((project) => {
+//     projectsDomString += `<div class="card" style="width: 18rem;">
+//     <h5 class="card-title">${project.title}</h5>
+//     <div class="card-body">
+//     <p class="card-text"> ${project.description}</p>
+//     <p class="card-text">Last Updated ${project.lastUpdated}</p>
+//   </div>
+// </div>`;
+// });
+// renderToDom("#appProjects", projectsDomString);
+// };
 
-pinnedProjectsOnDom(projects);
+// pinnedProjectsOnDom(projects);
+
+// const cardsOnDom = (array) => {
+//   let repoExamplesDomString = "";
+// array.map((repo) => {
+//     repoExamplesDomString += 
+//     `<div class="card" style="width: 18rem;">
+//     <div class="card-body">
+//       <h5 class="card-title">${repo.name}</h5>
+//       <p class="card-text">${repo.description}</p>
+//       <p> 
+//       </p>
+//     </div>
+//   </div>`
+//   });
+//       renderToDom("#listed-repos", repoExamplesDomString);
+// };
+// {/* <span>${repo.tags[0].tName}</span> */}
+// cardsOnDom(repoExamples)
 
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
-array.map((repo) => {
+for (const [index, repo] of array.entries()) {
     repoExamplesDomString += 
     `<div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${repo.name}</h5>
       <p class="card-text">${repo.description}</p>
-      <span>${repo.tags[0].tName}</span>
+      <p>${repoExamples[index].tags[0].tName}</p>
     </div>
   </div>`
-  });
+  };
       renderToDom("#listed-repos", repoExamplesDomString);
 };
 
 cardsOnDom(repoExamples)
 
+
 const repoFormOnDom = () => {
   let domFormString = 
-  `<div class="mb-3">
+  `
+  <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Create a New Repository </label>
   <input type="text" class="form-control" id="repo_name" placeholder="Name">
 </div>
@@ -188,7 +208,7 @@ const repoFormOnDom = () => {
   <button type="submit" class="btn btn-primary" id="cRepoBtn">Create Repository</button>
 </div>`
 ;
-    renderToDom("#create-repo-form", domFormString)
+    renderToDom("#repo-form", domFormString)
 };
 
 repoFormOnDom()
@@ -204,7 +224,7 @@ repoFormOnDom()
     repoForm.reset();
   }
 
-  const repoForm = document.querySelector("create-repo-form")
+  const repoForm = document.querySelector('#repo-form')
   repoForm.addEventListener("submit", (e) => {
     e.preventDefault();
     createNewRepo()
@@ -267,62 +287,10 @@ form.addEventListener("submit", (e) => {
   createPinnedRepo()
 });
 
-// const cardsOnDom = (array) => {
-//   let repoExamplesDomString = "";
-// array.map((repo) => {
-//     repoExamplesDomString += 
-//     `<div class="card" style="width: 18rem;">
-//     <div class="card-body">
-//       <h5 class="card-title">${repo.name}</h5>
-//       <p class="card-text">${repo.description}</p>
-//       <span>${repo.tags[0].tName}</span>
-//     </div>
-//   </div>`
-//   });
-//       renderToDom("#listed-repos", repoExamplesDomString);
-// };
-
-//cardsOnDom(repoExamples)
-// cardsOnDom(repoExamples)
-
-// const repoFormOnDom = () => {
-//   let domFormString = `
-//  <form id="addRepoForm">
-//   <div class="mb-3">
-//     <label for="exampleFormControlInput1" class="form-label">Create a New Repository</label>
-//     <h6>Repository Name *</h6>
-//     <input type="text" id="repo-name" class="form-control">
-//   </div>
-//   <div class="mb-3">
-//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-//     <input type="text" class="form-control" id="exampleFormControlTextarea repo-d" rows="3"></input>
-//     <button type="submit" id ="submit-r" class="submit-repo">Create Repository</button>
-//   </div>
-// </div>
-// </form>`;
-//     renderToDom("#create-repo-form", domFormString)
-// };
-
-// repoFormOnDom()
 
 
+cardsOnDom(repoExamples)
 
-  // const createNewRepo = () => {
-  //   const newRepoObj = {
-  //     id: repoExamples.length + 1,
-  //     name: document.querySelector("#repo-name").value,
-  //     description: document.querySelector("#repo-d").value,
-  //   };
-  //   repoExamples.push(newRepoObj);
-  //   cardsOnDom(repoExamples)
-  //   repoForm.reset();
-  // }
-
-  // const repoForm = document.querySelector("create-repo-form")
-  // repoForm.addEventListener("submit", (e) => {
-  //   e.preventDefault();
-  //   createNewRepo();
-  // });
 
 
 
