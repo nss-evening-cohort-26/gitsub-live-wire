@@ -122,8 +122,6 @@ const sideBarOnDom = ()=>{
 };
 sideBarOnDom();
 
-<<<<<<< HEAD
-=======
 const projects = [
   {
     id: 1,
@@ -171,7 +169,7 @@ const projectsOnDom = (array) => {
 });
 renderToDom("#appProjects", projectsDomString);
 };
-projectsOnDom(projects);
+// projectsOnDom(projects);
 
 //Project Form appears
 const projectForm = () =>{
@@ -185,21 +183,18 @@ const projectForm = () =>{
   <button type="submit" class="btn btn-success pinned-btn" id="projectButton">Create project</button>
 </div>`
 renderToDom("#create-project-form", formString)
-};
-  
+};  
 const projForm = document.querySelector("#create-project-form");
   projForm.addEventListener("submit", (e) => {
     e.preventDefault();
     newProject()
     
   });
-
-projectForm();
+// projectForm();
 
 //create a function that grabs all the values from the form, pushes the new object to the array, 
 //then repaints the DOM with the new project
 const newProject = () => {
- 
     const newProjectObject = {
       id: projects.length + 1,
       title: document.querySelector("#pForm_name").value,
@@ -210,11 +205,8 @@ const newProject = () => {
   projectsOnDom(projects);
   projForm.reset();
   }
-  
 
-
-
->>>>>>> main
+// Repos on DOM for repos page 
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
 array.map((repo) => {
@@ -231,6 +223,7 @@ array.map((repo) => {
 };
 // cardsOnDom(repoExamples)
 
+// renders form for repo page
 const repoFormOnDom = () => {
   let domFormString = 
   `<div class="mb-3">
@@ -247,6 +240,7 @@ const repoFormOnDom = () => {
 };
 // repoFormOnDom()
 
+// created bew reos for repo page
 const createNewRepo = () => {
     const newRepoObj = {
       id: repoExamples.length + 1,
@@ -257,7 +251,6 @@ const createNewRepo = () => {
     cardsOnDom(repoExamples)
     repoForm.reset();
   }
-
 const repoForm = document.querySelector("create-repo-form")
 repoForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -265,9 +258,9 @@ repoForm.addEventListener("submit", (e) => {
 });
 
 // Render pinned repos to DOM
-function pinnedOnDom(array) {
+const pinnedOnDom = (array) =>{
   let pinnedString = "";
-  array.forEach((pin) => {
+  array.forEach((pin) =>{
     pinnedString += ` <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
@@ -283,13 +276,8 @@ function pinnedOnDom(array) {
   </div>`;
   });
   renderToDom("#pinned-repos", pinnedString);
-<<<<<<< HEAD
-};
-// pinnedOnDom(repoExamples)
-=======
 }
-pinnedOnDom(repoExamples)
->>>>>>> main
+// pinnedOnDom(repoExamples)
 
 // render form on the DOM
 const pinnedFormOnDom = () =>{
@@ -318,106 +306,12 @@ const createPinnedRepo = () =>{
   form.reset();
   console.log("submitting");
 }
-
 // event listener for my form tag in HTML will reset the form and call the create function 
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   createPinnedRepo()
 });
-
-<<<<<<< HEAD
-const projects = [
-  {
-    id: 1,
-    name: "Dusty",
-    color: "Green",
-    specialSkill: "Gives sincere apologies.",
-    type: "cat",
-    imageUrl:
-      "https://static.displate.com/857x1200/displate/2023-03-15/dadeeb74dcc7ed99f2da757226d69818_5670a0e43cfe81ada198f1864a784534.jpg",
-  }
-];
-=======
-// const cardsOnDom = (array) => {
-//   let repoExamplesDomString = "";
-// array.map((repo) => {
-//     repoExamplesDomString += 
-//     `<div class="card" style="width: 18rem;">
-//     <div class="card-body">
-//       <h5 class="card-title">${repo.name}</h5>
-//       <p class="card-text">${repo.description}</p>
-//       <span>${repo.tags[0].tName}</span>
-//     </div>
-//   </div>`
-//   });
-//       renderToDom("#listed-repos", repoExamplesDomString);
-// };
-
-//cardsOnDom(repoExamples)
-// cardsOnDom(repoExamples)
-
-// const repoFormOnDom = () => {
-//   let domFormString = `
-//  <form id="addRepoForm">
-//   <div class="mb-3">
-//     <label for="exampleFormControlInput1" class="form-label">Create a New Repository</label>
-//     <h6>Repository Name *</h6>
-//     <input type="text" id="repo-name" class="form-control">
-//   </div>
-//   <div class="mb-3">
-//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-//     <input type="text" class="form-control" id="exampleFormControlTextarea repo-d" rows="3"></input>
-//     <button type="submit" id ="submit-r" class="submit-repo">Create Repository</button>
-//   </div>
-// </div>
-// </form>`;
-//     renderToDom("#create-repo-form", domFormString)
-// };
-
-// repoFormOnDom()
-
-
-
-  // const createNewRepo = () => {
-  //   const newRepoObj = {
-  //     id: repoExamples.length + 1,
-  //     name: document.querySelector("#repo-name").value,
-  //     description: document.querySelector("#repo-d").value,
-  //   };
-  //   repoExamples.push(newRepoObj);
-  //   cardsOnDom(repoExamples)
-  //   repoForm.reset();
-  // }
-
-  // const repoForm = document.querySelector("create-repo-form")
-  // repoForm.addEventListener("submit", (e) => {
-  //   e.preventDefault();
-  //   createNewRepo();
-  // });
-
-
-
-
->>>>>>> main
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "";
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
-    <h5 class="card-title">${project.name}</h5>
-    <img src="${project.imageUrl}" 
-    class="card-img-top" alt="...">
-    <div class="card-body">
-    <p class="card-text">Color: ${project.color}</p>
-    <p class="card-text">Special Skill: ${project.specialSkill}</p>
-    <p class="card-text">${project.type}</p>
-  </div>
-</div>`;
-});
-renderToDom("#appProjects", projectsDomString);
-};
-// pinnedProjectsOnDom(projects);
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -431,9 +325,11 @@ if (document.URL.includes("index.html")) {
   pinnedOnDom(repoExamples);
   pinnedFormOnDom();
 }if (document.URL.includes("project.html")) {
-  pinnedProjectsOnDom(projects);
+  projectsOnDom(projects);
+  projectForm();;
 } else{
-  pinnedProjectsOnDom(projects);
+  cardsOnDom(repoExamples);
+  repoFormOnDom()
 }
 }
 startApp()
