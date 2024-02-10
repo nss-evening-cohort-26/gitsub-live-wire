@@ -30,7 +30,7 @@ const sideBarOnDom = ()=>{
     <a href="">
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star color-fg-muted">
         <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
-    </svg>
+      </svg>
       <span class="stars"><b>329</b></span>
     </a>
   </div>
@@ -122,43 +122,6 @@ const sideBarOnDom = ()=>{
 };
 sideBarOnDom();
 
-const projects = [
-  {
-    id: 1,
-    title: "Example 1",
-    description: "No description",
-    lastUpdated: "7 seconds ago"
-  },
-  {
-    id: 2,
-    title: "my-goals",
-    description: "No description",
-    lastUpdated: "4 hours ago"
-  },
-  {
-    id: 3,
-    title: "Sample My Goals",
-    description: "Goals for the NSS Bootcamp",
-    lastUpdated: "1 minute ago"
-  }
-];
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "3 Open 0 Closed";
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
-    <h5 class="card-title">${project.title}</h5>
-    <div class="card-body">
-    <p class="card-text"> ${project.description}</p>
-    <p class="card-text">Last Updated ${project.lastUpdated}</p>
-  </div>
-</div>`;
-});
-renderToDom("#appProjects", projectsDomString);
-};
-
-pinnedProjectsOnDom(projects);
-
 // Render pinned repos to DOM
 const pinnedOnDom = (array) =>{
   let pinnedString = "";
@@ -213,6 +176,7 @@ const createPinnedRepo = () =>{
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  
   createPinnedRepo()
 });
 
@@ -230,5 +194,61 @@ array.map((repo) => {
   });
       renderToDom("#listed-repos", repoExamplesDomString);
 };
+// cardsOnDom(repoExamples)
 
-cardsOnDom(repoExamples)
+const projects = [
+  {
+    id: 1,
+    title: "Example 1",
+    description: "No description",
+    lastUpdated: "7 seconds ago"
+  },
+  {
+    id: 2,
+    title: "my-goals",
+    description: "No description",
+    lastUpdated: "4 hours ago"
+  },
+  {
+    id: 3,
+    title: "Sample My Goals",
+    description: "Goals for the NSS Bootcamp",
+    lastUpdated: "1 minute ago"
+  }
+];
+
+const pinnedProjectsOnDom = (array) => {
+  let projectsDomString = "3 Open 0 Closed";
+  array.map((project) => {
+    projectsDomString += `<div class="card" style="width: 18rem;">
+    <h5 class="card-title">${project.title}</h5>
+    <div class="card-body">
+    <p class="card-text"> ${project.description}</p>
+    <p class="card-text">Last Updated ${project.lastUpdated}</p>
+  </div>
+</div>`;
+});
+renderToDom("#appProjects", projectsDomString);
+};
+
+// pinnedProjectsOnDom(projects);
+
+document.addEventListener('DOMContentLoaded', () => {
+  sideBarOnDom();
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
+});
+
+
+const startApp= ()=>{
+if (document.URL.includes("index.html")) {
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
+}if (document.URL.includes("project.html")) {
+  pinnedProjectsOnDom(projects);
+} else{
+  cardsOnDom(repoExamples)
+}
+}
+
+startApp()
