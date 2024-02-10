@@ -159,46 +159,37 @@ sideBarOnDom();
 
 // pinnedProjectsOnDom(projects);
 
-// const cardsOnDom = (array) => {
-//   let repoExamplesDomString = "";
-// array.map((repo) => {
-//     repoExamplesDomString += 
-//     `<div class="card" style="width: 18rem;">
-//     <div class="card-body">
-//       <h5 class="card-title">${repo.name}</h5>
-//       <p class="card-text">${repo.description}</p>
-//       <p> 
-//       </p>
-//     </div>
-//   </div>`
-//   });
-//       renderToDom("#listed-repos", repoExamplesDomString);
-// };
-// {/* <span>${repo.tags[0].tName}</span> */}
-// cardsOnDom(repoExamples)
-
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
-for (const [index, repo] of array.entries()) {
+array.map((repo) => {
     repoExamplesDomString += 
     `<div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${repo.name}</h5>
       <p class="card-text">${repo.description}</p>
-      <p>${repoExamples[index].tags[0].tName}</p>
+      ${repo.language ? `<p class="card-text" style="background-color: ${
+        repo.language === "Javascript"
+        ? "#f1e05a"
+        :repo.language === "HTML"
+        ? "#e34c26"
+        :repo.language === "CSS"
+        ? "#41b883"
+        : " "
+      }">${repo.language}</p>` : ""}  
+      ${repo.tags ? `<span>${repo.tags[0].tName}</span>` : ""}
     </div>
   </div>`
-  };
+  });
       renderToDom("#listed-repos", repoExamplesDomString);
 };
-
 cardsOnDom(repoExamples)
+
+
 
 
 const repoFormOnDom = () => {
   let domFormString = 
-  `
-  <div class="mb-3">
+  `<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Create a New Repository </label>
   <input type="text" class="form-control" id="repo_name" placeholder="Name">
 </div>
@@ -218,6 +209,8 @@ repoFormOnDom()
       id: repoExamples.length + 1,
       name: document.querySelector("#repo_name").value,
       description: document.querySelector("#repo_description").value,
+      language: "",
+      tag: [],
     };
     repoExamples.push(newRepoObj);
     cardsOnDom(repoExamples)
