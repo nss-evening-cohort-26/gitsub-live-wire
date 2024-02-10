@@ -30,7 +30,7 @@ const sideBarOnDom = ()=>{
     <a href="">
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star color-fg-muted">
         <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
-    </svg>
+      </svg>
       <span class="stars"><b>329</b></span>
     </a>
   </div>
@@ -169,7 +169,7 @@ const projectsOnDom = (array) => {
 });
 renderToDom("#appProjects", projectsDomString);
 };
-projectsOnDom(projects);
+// projectsOnDom(projects);
 
 //Project Form appears
 const projectForm = () =>{
@@ -183,21 +183,18 @@ const projectForm = () =>{
   <button type="submit" class="btn btn-success pinned-btn" id="projectButton">Create project</button>
 </div>`
 renderToDom("#create-project-form", formString)
-};
-  
+};  
 const projForm = document.querySelector("#create-project-form");
   projForm.addEventListener("submit", (e) => {
     e.preventDefault();
     newProject()
     
   });
-
-projectForm();
+// projectForm();
 
 //create a function that grabs all the values from the form, pushes the new object to the array, 
 //then repaints the DOM with the new project
 const newProject = () => {
- 
     const newProjectObject = {
       id: projects.length + 1,
       title: document.querySelector("#pForm_name").value,
@@ -208,10 +205,8 @@ const newProject = () => {
   projectsOnDom(projects);
   projForm.reset();
   }
-  
 
-
-
+// Repos on DOM for repos page 
 const cardsOnDom = (array) => {
   let repoExamplesDomString = "";
 array.map((repo) => {
@@ -226,9 +221,9 @@ array.map((repo) => {
   });
       renderToDom("#listed-repos", repoExamplesDomString);
 };
+// cardsOnDom(repoExamples)
 
-cardsOnDom(repoExamples)
-
+// renders form for repo page
 const repoFormOnDom = () => {
   let domFormString = 
   `<div class="mb-3">
@@ -243,10 +238,10 @@ const repoFormOnDom = () => {
 ;
     renderToDom("#create-repo-form", domFormString)
 };
+// repoFormOnDom()
 
-repoFormOnDom()
-
-  const createNewRepo = () => {
+// created bew reos for repo page
+const createNewRepo = () => {
     const newRepoObj = {
       id: repoExamples.length + 1,
       name: document.querySelector("#repo_name").value,
@@ -256,17 +251,16 @@ repoFormOnDom()
     cardsOnDom(repoExamples)
     repoForm.reset();
   }
-
-  const repoForm = document.querySelector("create-repo-form")
-  repoForm.addEventListener("submit", (e) => {
+const repoForm = document.querySelector("create-repo-form")
+repoForm.addEventListener("submit", (e) => {
     e.preventDefault();
     createNewRepo()
-  });
+});
 
 // Render pinned repos to DOM
-function pinnedOnDom(array) {
+const pinnedOnDom = (array) =>{
   let pinnedString = "";
-  array.forEach((pin) => {
+  array.forEach((pin) =>{
     pinnedString += ` <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
@@ -283,7 +277,7 @@ function pinnedOnDom(array) {
   });
   renderToDom("#pinned-repos", pinnedString);
 }
-pinnedOnDom(repoExamples)
+// pinnedOnDom(repoExamples)
 
 // render form on the DOM
 const pinnedFormOnDom = () =>{
@@ -298,7 +292,7 @@ const pinnedFormOnDom = () =>{
 </div>`
 renderToDom("#create-pinned-form", pinnedFormString)
 }
-pinnedFormOnDom();
+// pinnedFormOnDom();
 
 // will create a new repo that is pinned 
 const createPinnedRepo = () =>{
@@ -312,7 +306,6 @@ const createPinnedRepo = () =>{
   form.reset();
   console.log("submitting");
 }
-
 // event listener for my form tag in HTML will reset the form and call the create function 
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
@@ -320,82 +313,23 @@ form.addEventListener("submit", (e) => {
   createPinnedRepo()
 });
 
-// const cardsOnDom = (array) => {
-//   let repoExamplesDomString = "";
-// array.map((repo) => {
-//     repoExamplesDomString += 
-//     `<div class="card" style="width: 18rem;">
-//     <div class="card-body">
-//       <h5 class="card-title">${repo.name}</h5>
-//       <p class="card-text">${repo.description}</p>
-//       <span>${repo.tags[0].tName}</span>
-//     </div>
-//   </div>`
-//   });
-//       renderToDom("#listed-repos", repoExamplesDomString);
-// };
 
-//cardsOnDom(repoExamples)
-// cardsOnDom(repoExamples)
-
-// const repoFormOnDom = () => {
-//   let domFormString = `
-//  <form id="addRepoForm">
-//   <div class="mb-3">
-//     <label for="exampleFormControlInput1" class="form-label">Create a New Repository</label>
-//     <h6>Repository Name *</h6>
-//     <input type="text" id="repo-name" class="form-control">
-//   </div>
-//   <div class="mb-3">
-//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-//     <input type="text" class="form-control" id="exampleFormControlTextarea repo-d" rows="3"></input>
-//     <button type="submit" id ="submit-r" class="submit-repo">Create Repository</button>
-//   </div>
-// </div>
-// </form>`;
-//     renderToDom("#create-repo-form", domFormString)
-// };
-
-// repoFormOnDom()
-
-
-
-  // const createNewRepo = () => {
-  //   const newRepoObj = {
-  //     id: repoExamples.length + 1,
-  //     name: document.querySelector("#repo-name").value,
-  //     description: document.querySelector("#repo-d").value,
-  //   };
-  //   repoExamples.push(newRepoObj);
-  //   cardsOnDom(repoExamples)
-  //   repoForm.reset();
-  // }
-
-  // const repoForm = document.querySelector("create-repo-form")
-  // repoForm.addEventListener("submit", (e) => {
-  //   e.preventDefault();
-  //   createNewRepo();
-  // });
-
-
-
-
-
-const pinnedProjectsOnDom = (array) => {
-  let projectsDomString = "";
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
-    <h5 class="card-title">${project.name}</h5>
-    <img src="${project.imageUrl}" 
-    class="card-img-top" alt="...">
-    <div class="card-body">
-    <p class="card-text">Color: ${project.color}</p>
-    <p class="card-text">Special Skill: ${project.specialSkill}</p>
-    <p class="card-text">${project.type}</p>
-  </div>
-</div>`;
+document.addEventListener('DOMContentLoaded', () => {
+  sideBarOnDom();
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
 });
-renderToDom("#appProjects", projectsDomString);
-};
 
-pinnedProjectsOnDom(projects);
+const startApp= ()=>{
+if (document.URL.includes("index.html")) {
+  pinnedOnDom(repoExamples);
+  pinnedFormOnDom();
+}if (document.URL.includes("project.html")) {
+  projectsOnDom(projects);
+  projectForm();;
+} else{
+  cardsOnDom(repoExamples);
+  repoFormOnDom()
+}
+}
+startApp()
