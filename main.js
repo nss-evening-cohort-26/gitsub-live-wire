@@ -156,14 +156,15 @@ const projects = [
 ];
 //Renders Projects to DOM
 const projectsOnDom = (array) => {
-  let projectsDomString = "3 Open 0 closed";
+  let projectsDomString = "<span class='projects-summary'>3 Open 0 closed</span>";;
   array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 18rem;">
+    projectsDomString += `<div class="card" style="width: 55%;">
     <h5 class="card-title">${project.title}</h5>
     <div class="card-body">
-    <p class="card-text"> ${project.description}</p>
-    <p class="card-text">Last Updated ${project.lastUpdated}</p>
-    <button class="btn btn-danger" id="star" class="starBtn">...</button>
+    <p class="card-text description"> ${project.description}</p>
+    <button class="btn btn-dark float-end" id="star" class="starBtn">...</button>
+    <p class="card-text updated">Last Updated ${project.lastUpdated}</p>
+    
   </div>
 </div>`;
 });

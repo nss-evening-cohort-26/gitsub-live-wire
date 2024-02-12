@@ -63,3 +63,31 @@ a:active {
   justify-content: space-between;
   align-items: center;
 }
+
+.card {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.projects-summary {
+  background-color: rgb(30, 28, 28);
+  color: white;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.updated {
+  font-weight: lighter;
+  font-size: x-small;
+}
+
+.description {
+  font-weight: lighter;
+  align-content: space-between;
+}
