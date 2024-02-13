@@ -112,3 +112,16 @@ a:active {
   align-items: baseline;
   margin: 10px;
 }
+
+.avatar-spon{
+  border-radius: 50%;
+}
+
+.avatar-org{
+  border-radius: 5px;
+}
+
+.profile-title{
+  font-size: 16px;
+  font-weight: bold;
+}
