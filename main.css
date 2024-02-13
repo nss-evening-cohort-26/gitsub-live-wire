@@ -1,6 +1,8 @@
 body{
   background-color: whitesmoke;
   margin: 20px 100px 0px;
+  line-height: 1.5;
+  font-family: 'Arimo', sans-serif;
 }
 
 /* This will make it so all a tags are only blue/underlined when the cursor is hovering */
@@ -8,6 +10,7 @@ a{
   color: black;
   text-decoration: none;
 }
+
 a:hover{
   color: blue;
   text-decoration: underline;
@@ -40,7 +43,7 @@ ul{
 }
 
 
-.project-icon {
+/* .project-icon {
   margin-top: 15px;
   margin-left: 7px;
 }
@@ -52,7 +55,7 @@ ul{
 
 .project-link {
   margin-left: 5px;
-}
+} */
 
 a:active {
  border-bottom: 1px solid black;
@@ -64,30 +67,48 @@ a:active {
   align-items: center;
 }
 
-.card {
-  background-color: black;
-  color: white;
-  border: 1px solid white;
+.collapse{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: flex-end;
 }
 
-
-.projects-summary {
-  background-color: rgb(30, 28, 28);
-  color: white;
+.pinned-icon-title{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
 
-.card-text {
-  text-align: center;
+.pinned-card-title{
+  margin-left: 5px;
+  font-weight: bold;
 }
 
-.updated {
-  font-weight: lighter;
-  font-size: x-small;
+.lang-star-fork{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-right: 140px;
+  flex-wrap: nowrap;
+
 }
 
-.description {
-  font-weight: lighter;
-  align-content: space-between;
+.lang-dot-color{
+  background-color: blue;
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border: 1px solid none;
+  border-radius: 50%;
+}
+
+#pinned-repos{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 10px;
 }
