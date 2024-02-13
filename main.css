@@ -66,3 +66,62 @@ a:active {
   justify-content: space-between;
   align-items: center;
 }
+
+.collapse{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+}
+
+.pinned-icon-title{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.pinned-card-title{
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.lang-star-fork{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-right: 140px;
+  flex-wrap: nowrap;
+
+}
+
+.lang-dot-color{
+  background-color: blue;
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border: 1px solid none;
+  border-radius: 50%;
+}
+
+#pinned-repos{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 10px;
+}
+
+.avatar-spon{
+  border-radius: 50%;
+}
+
+.avatar-org{
+  border-radius: 5px;
+}
+
+.profile-title{
+  font-size: 16px;
+  font-weight: bold;
+}

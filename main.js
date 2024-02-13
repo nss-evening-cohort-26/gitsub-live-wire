@@ -1,46 +1,87 @@
 import { repoExamples } from "./data/complexData.js";
 import { renderToDom } from "./utils/renderToDom.js";
 
-const pinnedForm = document.querySelector("#create-pinned-form");
-const projForm = document.querySelector("#create-project-form");
-const repoForm = document.querySelector('#repo-form')
-// const repoPageClickBtn = document.querySelector("#repo-pg-link")
-// const overviewPageClickBtn = document.querySelector("#overview-pg-link")
-// const projectPageClickBtn = document.querySelector("#project-pg-link")
 
-// repoPageClickBtn.addEventListener("click", () => {
-//   pinnedOnDom(repoExamples)
-//   pinnedFormOnDom();
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPage = window.location.pathname.split("/").pop();
 
-// overviewPageClickBtn.addEventListener("click", () => {
-//   cardsOnDom(repoExamples)
-//   repoFormOnDom()
-// });
 
-// projectPageClickBtn.addEventListener("click", () => {
-//   projectsOnDom(projects);
-//   projectForm();
-// });
+// const repoExamples = [
 
-// Update query selectors and event listeners
+//   {
+//     id: 1,
+//     name: "Calculator",
+//     description: "A calculator made using html, js, and css.",
+//     language: "CSS",
+//     tags: [
+//       {
+//         tName: "Optional Project"
+//       },
+//     ],
+//   },
+//   {
+//     id: 2, 
+//     name: "Pet Adoption",
+//     description: "An app to render cards on the DOM and filter the cards specific to each pet. Able to add and delete pets.",
+//     language: "JavaScript",
+//     tags: [
+//       {
+//         tName: "Class Project"
+//       },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     name: "Link in Bio",
+//     description: "Create a link in bio page using html and css. The app has buttons to explore someone's profile.",
+//     language: "HTML",
+//     tags: [
+//       {
+//         tName: "Optional Project"
+//       },
+//     ],
+//   },
+//   {
+//     id: 4,
+//     name: "Sorting Hat Assessment",
+//     description: "First assessment on our own. Creating an app to sort students into specific houses. Create functions to add and expel students. The expel students are rendered to another column once they are expelled",
+//     language: "Javascript",
+//     tags: [
+//       {
+//         tName: "Assessment"
+//       }
+//     ],
+//   }
+// ]
+
+// const renderToDom = (divId, html) => {
+//   const selectedDiv = document.querySelector(divId);
+//   selectedDiv.innerHTML = html
+// };
 
 
 // keep this code at the top. Renders profile to DOM
 const sideBarOnDom = ()=>{
-  let domString = `<div id="profile-area" style="width: 18rem;">
+  let domString = `<div id="profile-area" style="width: 18rem; margin-bottom: 50px;">
   <img src="https://pbs.twimg.com/profile_images/1323877428/the_office_nbc_tv_show_image_steve_carrol_as_michael_scott__1__400x400.jpg" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Michael Scott</h5>
+    <h5 class="card-title" style="margin-top: 20px; font-weight: bold;">Michael Scott</h5>
     <h6>michaelscott</h6>
-    <p class="card-text">Building tech to elevate people. Founder of React Ladies a community for React JS developers.</p>
+    <p class="card-text" style="margin-bottom: 15px">Building tech to elevate people. Founder of React Ladies a community for React JS developers.</p>
   </div>
-  <div>
-    <button>Follow</button>
-    <button>Sponsor</button>
-    <button>...</button>
+  <div class= "follow-sponsor-btn-group" style="margin-bottom: 10px">
+    <button style="padding: 0px 15px; border-radius: 5px;">Follow</button>
+    <button style="padding: 0px 15px; border-radius: 5px;">
+      <span>
+        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart icon-sponsor mr-1 v-align-middle color-fg-sponsors anim-pulse-in">
+          <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
+        </svg>
+      </span>
+      <span>Sponsor</span>
+      </button>
+    <button style="padding: 0px 15px; border-radius: 5px;">...</button>
   </div>
-  <div class="social-count">
+  <div class="social-count" style="margin-bottom: 10px">
     <a href="">
       <svg text="muted" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-people">
         <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
@@ -95,7 +136,7 @@ const sideBarOnDom = ()=>{
   </div>
   <hr>
   <div class="highlights">
-    <h5 class=" ">Highlights</h5>
+    <h5 class="profile-title">Highlights</h5>
     <ul>
       <li>
         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star-fill color-fg-muted mr-1">
@@ -115,39 +156,35 @@ const sideBarOnDom = ()=>{
   </div>
   <hr>  
   <div class="organizations">
-    <h5>Organizations</h5>
+    <h5 class="profile-title">Organizations</h5>
     <a href="">
-      <img src="" alt="">
+      <img  class="avatar-org" src="images/dunder1.jpg" size="32" height="32" width="32" >
     </a>
     <a href="">
-      <img src="" alt="">
-    </a>
-    <a href="">
-      <img src="" alt="">
+      <img class="avatar-org" src="images/paper.jpg" size="32" height="32" width="32" >
     </a>
   </div>
   <hr>
   <div class="sponsors">
-    <h5>Sponsors</h5>
+    <h5 class="profile-title">Sponsors</h5>
     <div class="profile-img-sponsors">
       <a href="">
-        <img class="avatar avatar-user" src="images/dwight.jpg" width="35" height="35">
+        <img class="avatar-spon" src="images/dwight.jpg" width="35" height="35">
       </a>
       <a href="">
-        <img class="avatar avatar-user" src="images/pam.jpg" width="35" height="35">
+        <img class="avatar-spon" src="images/pam.jpg" width="35" height="35">
       </a>
       <a href="">
-        <img class="avatar avatar-user" src="images/jim.jpg" width="35" height="35">
+        <img class="avatar-spon" src="images/jim.jpg" width="35" height="35">
       </a>
       <a href="">
-        <img class="avatar avatar-user" src="images/jan.jpg" width="35" height="35">
+        <img class="avatar-spon" src="images/jan.jpg" width="35" height="35">
       </a>
     </div>  
   </div>
   </div>`;
   renderToDom("#layout-sidebar", domString);
 };
-sideBarOnDom();
 
 // Render pinned repos to DOM
 const pinnedOnDom = (array) =>{
@@ -186,7 +223,6 @@ const pinnedOnDom = (array) =>{
   });
   renderToDom("#pinned-repos", pinnedString);
 }
-pinnedOnDom(repoExamples)
 
 // render form on the DOM
 const pinnedFormOnDom = () =>{
@@ -201,12 +237,6 @@ const pinnedFormOnDom = () =>{
 </div>`
 renderToDom("#create-pinned-form", pinnedFormString)
 }
-pinnedFormOnDom(); 
-
-pinnedForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    createPinnedRepo()
-  });
 
 // will create a new repo that is pinned 
 const createPinnedRepo = () =>{
@@ -222,15 +252,10 @@ const createPinnedRepo = () =>{
 }
 
 // Repos on DOM for repos page 
+
 // cardsOnDom(repoExamples)
 
 
-// repoFormOnDom()
-
-repoForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  createNewRepo()
-  });
 
 const projects = [
   {
@@ -264,6 +289,7 @@ const projects = [
     lastUpdated: "12 days ago"
   }
 ];
+
 //Renders Projects to DOM
 const projectsOnDom = (array) => {
   let projectsDomString = "<span class='projects-summary'>3 Open 0 closed</span>";;
@@ -280,7 +306,6 @@ const projectsOnDom = (array) => {
 });
 renderToDom("#appProjects", projectsDomString);
 };
-// projectsOnDom(projects);
 
 //Project Form appears
 const projectForm = () =>{
@@ -295,15 +320,6 @@ const projectForm = () =>{
 </div>`
 renderToDom("#create-project-form", formString)
 };  
-// projectForm();
-
-projForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    newProject()
-    
-  });
-projectForm();
-
 //create a function that grabs all the values from the form, pushes the new object to the array, 
 //then repaints the DOM with the new project
 const newProject = () => {
@@ -391,10 +407,49 @@ const createNewRepo = () => {
     repoForm.reset();
 }
 
-
-const startApp = ()=>{
+const startApp = () => {
   sideBarOnDom();
-  pinnedOnDom(repoExamples);
-  pinnedFormOnDom();
+  switch (currentPage) {
+    case "index.html":
+      pinnedOnDom(repoExamples);
+      pinnedFormOnDom();
+      break;
+    case "repos.html":
+      cardsOnDom(repoExamples);
+      repoFormOnDom();
+      break;
+    case "project.html":
+      projectsOnDom(projects);
+      projectForm();
+      break;
+    default:
+      console.log("No specific JavaScript for this page.");
+  }
+};
+
+startApp();
+
+const pinnedForm = document.querySelector("#create-pinned-form");
+if (pinnedForm) {
+  pinnedForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    createPinnedRepo();
+  });
 }
-startApp()
+
+const repoForm = document.querySelector('#repo-form')
+if (repoForm) {
+  repoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    createNewRepo();
+  });
+}
+
+const projForm = document.querySelector("#create-project-form");
+if (projForm) {
+  projForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    newProject();
+  });
+}
+});
