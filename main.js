@@ -222,46 +222,9 @@ const createPinnedRepo = () =>{
 }
 
 // Repos on DOM for repos page 
-const cardsOnDom = (array) => {
-  let repoExamplesDomString = "";
-  array.map((repo) => {
-    repoExamplesDomString += 
-    `<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">${repo.name}</h5>
-      <p class="card-text">${repo.description}</p>
-      ${repo.language ? `<p class="card-text" style="background-color: ${
-        repo.language === "Javascript"
-        ? "#f1e05a"
-        :repo.language === "HTML"
-        ? "#e34c26"
-        :repo.language === "CSS"
-        ? "#41b883"
-        : " "
-      }">${repo.language}</p>` : ""}  
-      ${repo.tags ? `<span>${repo.tags[0].tName}</span>` : ""}
-    </div>
-  </div>`
-  });
-      renderToDom("#listed-repos", repoExamplesDomString);
-};
 // cardsOnDom(repoExamples)
 
-// renders form for repo page
-const repoFormOnDom = () => {
-  let domFormString = 
-  `<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Create a New Repository </label>
-  <input type="text" class="form-control" id="repo_name" placeholder="Name">
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-  <input type="text" class="form-control" id="repo_description" placeholder="Description">
-  <button type="submit" class="btn btn-primary" id="cRepoBtn">Create Repository</button>
-</div>`
-;
-    renderToDom("#repo-form", domFormString)
-};
+
 // repoFormOnDom()
 
 repoForm.addEventListener("submit", (e) => {
@@ -338,6 +301,7 @@ projForm.addEventListener("submit", (e) => {
     newProject()
     
   });
+projectForm();
 
 //create a function that grabs all the values from the form, pushes the new object to the array, 
 //then repaints the DOM with the new project
@@ -353,6 +317,64 @@ const newProject = () => {
   projForm.reset();
 }
 
+
+// Repos on DOM for repos page 
+const cardsOnDom = (array) => {
+  let repoExamplesDomString = "";
+array.map((repo) => {
+    repoExamplesDomString += 
+    `<div class="repo-card" style="width: 61rem;">
+    <div class="repo-card-body">
+      <h5 class="card-title" style="color: #0969DA">${repo.name}</h5>
+      <p class="card-text">${repo.description}</p>
+      ${repo.tags ? `<span>${repo.tags[0].tName}</span>` : ""}
+      ${repo.language ? `
+  <div class="language-container">
+    <span class="language-circle" style="background-color: ${
+      repo.language === "Javascript"
+        ? "#f1e05a"
+        : repo.language === "HTML"
+        ? "#e34c26"
+        : repo.language === "CSS"
+        ? "#41b883"
+        : " "
+    }">
+    </span>
+    <p class="card-text">${repo.language}</p>
+    <a class="repo-icon">
+      <svg aria-label="star" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star repo-star-oct"> <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+      </svg>
+    </a>
+    <a class="repo-icon">
+      <svg aria-label="fork" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked repo-star-oct";>
+      <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+      </svg>
+    </a>
+  </div>
+` : ""} 
+    </div>
+  </div>`
+  });
+      renderToDom("#listed-repos", repoExamplesDomString);
+};
+// cardsOnDom(repoExamples)
+
+// renders form for repo page
+const repoFormOnDom = () => {
+  let domFormString = 
+  `<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Create a New Repository </label>
+  <input type="text" class="form-control" id="repo_name" placeholder="Name">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Description (optional)</label>
+  <input type="text" class="form-control" id="repo_description">
+  <button type="submit" class="btn btn-primary" id="cRepoBtn" style="margin-top: 7px; background-color: green; color: white;" ;>Create Repository</button>
+</div>`
+;
+    renderToDom("#repo-form", domFormString)
+};
+// repoFormOnDom()
 
 // created bew reos for repo page
 const createNewRepo = () => {
