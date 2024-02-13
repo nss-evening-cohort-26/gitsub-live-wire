@@ -222,46 +222,9 @@ const createPinnedRepo = () =>{
 }
 
 // Repos on DOM for repos page 
-const cardsOnDom = (array) => {
-  let repoExamplesDomString = "";
-  array.map((repo) => {
-    repoExamplesDomString += 
-    `<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">${repo.name}</h5>
-      <p class="card-text">${repo.description}</p>
-      ${repo.language ? `<p class="card-text" style="background-color: ${
-        repo.language === "Javascript"
-        ? "#f1e05a"
-        :repo.language === "HTML"
-        ? "#e34c26"
-        :repo.language === "CSS"
-        ? "#41b883"
-        : " "
-      }">${repo.language}</p>` : ""}  
-      ${repo.tags ? `<span>${repo.tags[0].tName}</span>` : ""}
-    </div>
-  </div>`
-  });
-      renderToDom("#listed-repos", repoExamplesDomString);
-};
 // cardsOnDom(repoExamples)
 
-// renders form for repo page
-const repoFormOnDom = () => {
-  let domFormString = 
-  `<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Create a New Repository </label>
-  <input type="text" class="form-control" id="repo_name" placeholder="Name">
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-  <input type="text" class="form-control" id="repo_description" placeholder="Description">
-  <button type="submit" class="btn btn-primary" id="cRepoBtn">Create Repository</button>
-</div>`
-;
-    renderToDom("#repo-form", domFormString)
-};
+
 // repoFormOnDom()
 
 repoForm.addEventListener("submit", (e) => {
