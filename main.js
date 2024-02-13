@@ -253,10 +253,6 @@ const createPinnedRepo = () =>{
 
 // Repos on DOM for repos page 
 
-// cardsOnDom(repoExamples)
-
-
-
 const projects = [
   {
     id: 1,
@@ -374,7 +370,7 @@ array.map((repo) => {
   });
       renderToDom("#listed-repos", repoExamplesDomString);
 };
-// cardsOnDom(repoExamples)
+
 
 // renders form for repo page
 const repoFormOnDom = () => {
@@ -391,7 +387,7 @@ const repoFormOnDom = () => {
 ;
     renderToDom("#repo-form", domFormString)
 };
-// repoFormOnDom()
+
 
 // created bew reos for repo page
 const createNewRepo = () => {
