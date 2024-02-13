@@ -64,4 +64,39 @@ a:active {
   align-items: center;
 }
 
+.language-container {
+  display: flex;
+  align-content: center;
+}
 
+.language-circle {
+  display: inline-block;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: 7px;
+  margin-right: 7px; /* Adjust the margin as needed */
+}
+
+.language-text {
+  margin: 0; /* Remove default margin for paragraphs */
+  line-height: 15px; /* Set the line-height equal to the circle height */
+}
+.repo-card {
+  border: 2px solid white;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  color: grey;
+  background-color: white;
+}
+
+.repo-icon {
+  display: flex;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.repo-star-oct {
+  color: #656D76
+}
