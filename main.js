@@ -3,8 +3,6 @@ import { renderToDom } from "./utils/renderToDom.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const currentPage = window.location.pathname.split("/").pop();
-
 
 // const repoExamples = [
 
@@ -403,27 +401,52 @@ const createNewRepo = () => {
     repoForm.reset();
 }
 
-const startApp = () => {
-  sideBarOnDom();
-  switch (currentPage) {
-    case "index.html":
+// const startApp = () => {
+//   sideBarOnDom();
+//   switch (currentPage) {
+//     case "index.html":
+//       pinnedOnDom(repoExamples);
+//       pinnedFormOnDom();
+//       break;
+//     case "repos.html":
+//       cardsOnDom(repoExamples);
+//       repoFormOnDom();
+//       break;
+//     case "project.html":
+//       projectsOnDom(projects);
+//       projectForm();
+//       break;
+//     default:
+//       console.log("No specific JavaScript for this page.");
+//   }
+// };
+
+// startApp();
+
+const getData = () => {
+  const page = document.body.id;
+  switch (page) {
+    case "main":
       pinnedOnDom(repoExamples);
       pinnedFormOnDom();
       break;
-    case "repos.html":
+    case "repoBody":
       cardsOnDom(repoExamples);
       repoFormOnDom();
       break;
-    case "project.html":
+      case "projBody":
       projectsOnDom(projects);
       projectForm();
       break;
-    default:
-      console.log("No specific JavaScript for this page.");
+
   }
 };
 
-startApp();
+const starApp = () => {
+  sideBarOnDom();
+  getData();
+}
+starApp();
 
 const pinnedForm = document.querySelector("#create-pinned-form");
 if (pinnedForm) {
