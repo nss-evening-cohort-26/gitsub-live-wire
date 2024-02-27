@@ -399,5 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sideBarOnDom();
     getData();
   };
+
+  // call your starapp at the end 
   starApp();
 });
