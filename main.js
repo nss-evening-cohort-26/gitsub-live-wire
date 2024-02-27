@@ -1,66 +1,10 @@
 import { repoExamples } from "./data/complexData.js";
 import { renderToDom } from "./utils/renderToDom.js";
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
-// const repoExamples = [
-
-//   {
-//     id: 1,
-//     name: "Calculator",
-//     description: "A calculator made using html, js, and css.",
-//     language: "CSS",
-//     tags: [
-//       {
-//         tName: "Optional Project"
-//       },
-//     ],
-//   },
-//   {
-//     id: 2, 
-//     name: "Pet Adoption",
-//     description: "An app to render cards on the DOM and filter the cards specific to each pet. Able to add and delete pets.",
-//     language: "JavaScript",
-//     tags: [
-//       {
-//         tName: "Class Project"
-//       },
-//     ],
-//   },
-//   {
-//     id: 3,
-//     name: "Link in Bio",
-//     description: "Create a link in bio page using html and css. The app has buttons to explore someone's profile.",
-//     language: "HTML",
-//     tags: [
-//       {
-//         tName: "Optional Project"
-//       },
-//     ],
-//   },
-//   {
-//     id: 4,
-//     name: "Sorting Hat Assessment",
-//     description: "First assessment on our own. Creating an app to sort students into specific houses. Create functions to add and expel students. The expel students are rendered to another column once they are expelled",
-//     language: "Javascript",
-//     tags: [
-//       {
-//         tName: "Assessment"
-//       }
-//     ],
-//   }
-// ]
-
-// const renderToDom = (divId, html) => {
-//   const selectedDiv = document.querySelector(divId);
-//   selectedDiv.innerHTML = html
-// };
-
-
-// keep this code at the top. Renders profile to DOM
-const sideBarOnDom = ()=>{
-  let domString = `<div id="profile-area" style="width: 18rem; margin-bottom: 50px;">
+  // keep this code at the top. Renders profile to DOM
+  const sideBarOnDom = () => {
+    let domString = `<div id="profile-area" style="width: 18rem; margin-bottom: 50px;">
   <img src="https://pbs.twimg.com/profile_images/1323877428/the_office_nbc_tv_show_image_steve_carrol_as_michael_scott__1__400x400.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title" style="margin-top: 20px; font-weight: bold;">Michael Scott</h5>
@@ -181,14 +125,14 @@ const sideBarOnDom = ()=>{
     </div>  
   </div>
   </div>`;
-  renderToDom("#layout-sidebar", domString);
-};
+    renderToDom("#layout-sidebar", domString);
+  };
 
-// Render pinned repos to DOM
-const pinnedOnDom = (array) =>{
-  let pinnedString = "";
-  array.forEach((pin) =>{
-    pinnedString += ` <div class="col-sm-6">
+  // Render pinned repos to DOM
+  const pinnedOnDom = (array) => {
+    let pinnedString = "";
+    array.forEach((pin) => {
+      pinnedString += ` <div class="col-sm-6">
     <div class="card pinned-card">
       <div class="card-body pinned-card-body">
       <div class = pinned-icon-title>
@@ -218,13 +162,13 @@ const pinnedOnDom = (array) =>{
       </div>
     </div>
   </div>`;
-  });
-  renderToDom("#pinned-repos", pinnedString);
-}
+    });
+    renderToDom("#pinned-repos", pinnedString);
+  };
 
-// render form on the DOM
-const pinnedFormOnDom = () =>{
-  let pinnedFormString =`<div class="mb-3">
+  // render form on the DOM
+  const pinnedFormOnDom = () => {
+    let pinnedFormString = `<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Create Pinned Repository</label>
   <input type="text" class="form-control" id="pinned_name" placeholder="Name">
 </div>
@@ -232,63 +176,65 @@ const pinnedFormOnDom = () =>{
   <label for="exampleFormControlTextarea1" class="form-label">Description</label>
   <input type="text" class="form-control" id="pinned_description" placeholder="Description" style="margin-bottom: 10px; padding-bottom: 100px;">
   <button type="submit" class="btn btn-primary pinned-btn" id="pinnedBtn">Pin!</button>
-</div>`
-renderToDom("#create-pinned-form", pinnedFormString)
-}
+</div>`;
+    renderToDom("#create-pinned-form", pinnedFormString);
+  };
 
-// will create a new repo that is pinned 
-const createPinnedRepo = () =>{
-  const newPinnedObj = {
-    id: repoExamples.length + 1,
-    name: document.querySelector("#pinned_name").value,
-    description: document.querySelector("#pinned_description").value
-  }
-  repoExamples.push(newPinnedObj);
-  pinnedOnDom(repoExamples);
-  pinnedForm.reset();
-  console.log("submitting");
-}
+  // will create a new repo that is pinned
+  const createPinnedRepo = () => {
+    const newPinnedObj = {
+      id: repoExamples.length + 1,
+      name: document.querySelector("#pinned_name").value,
+      description: document.querySelector("#pinned_description").value,
+    };
+    repoExamples.push(newPinnedObj);
+    pinnedOnDom(repoExamples);
+    pinnedForm.reset();
+    console.log("submitting");
+  };
 
-// Repos on DOM for repos page 
+  // Repos on DOM for repos page
 
-const projects = [
-  {
-    id: 1,
-    title: "Example 1",
-    description: "No description",
-    lastUpdated: "7 seconds ago"
-  },
-  {
-    id: 2,
-    title: "my-goals",
-    description: "No description",
-    lastUpdated: "4 hours ago"
-  },
-  {
-    id: 3,
-    title: "Sample My Goals",
-    description: "Goals for the NSS Bootcamp",
-    lastUpdated: "1 minute ago"
-  },
-  {
-    id: 4,
-    title: "Live Wire",
-    description: "First project board with group",
-    lastUpdated: "7 hours ago"
-  },
-  {
-    id: 5,
-    title: "Array methods",
-    description: "Someone gives you a key and a number, you have cargo pants with associated numbers on them, put the key in there",
-    lastUpdated: "12 days ago"
-  }
-];
+  const projects = [
+    {
+      id: 1,
+      title: "Example 1",
+      description: "No description",
+      lastUpdated: "7 seconds ago",
+    },
+    {
+      id: 2,
+      title: "my-goals",
+      description: "No description",
+      lastUpdated: "4 hours ago",
+    },
+    {
+      id: 3,
+      title: "Sample My Goals",
+      description: "Goals for the NSS Bootcamp",
+      lastUpdated: "1 minute ago",
+    },
+    {
+      id: 4,
+      title: "Live Wire",
+      description: "First project board with group",
+      lastUpdated: "7 hours ago",
+    },
+    {
+      id: 5,
+      title: "Array methods",
+      description:
+        "Someone gives you a key and a number, you have cargo pants with associated numbers on them, put the key in there",
+      lastUpdated: "12 days ago",
+    },
+  ];
 
-//Renders Projects to DOM
-const projectsOnDom = (array) => {
-  let projectsDomString = "<span class='projects-summary'>3 Open 0 closed</span>";;
-  array.map((project) => {
-    projectsDomString += `<div class="card" style="width: 55%;">
+  //Renders Projects to DOM
+  const projectsOnDom = (array) => {
+    let projectsDomString =
+      "<span class='projects-summary'>3 Open 0 closed</span>";
+    array.map((project) => {
+      projectsDomString += `<div class="card" style="width: 55%;">
     <h5 class="card-title">${project.title}</h5>
     <div class="card-body">
     <p class="card-text description"> ${project.description}</p>
@@ -297,13 +243,13 @@ const projectsOnDom = (array) => {
     
   </div>
 </div>`;
-});
-renderToDom("#appProjects", projectsDomString);
-};
+    });
+    renderToDom("#appProjects", projectsDomString);
+  };
 
-//Project Form appears
-const projectForm = () =>{
-  let formString =`<div class="mb-3">
+  //Project Form appears
+  const projectForm = () => {
+    let formString = `<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Project board name</label>
   <input type="text" class="form-control" id="pForm_name" placeholder="Name">
 </div>
@@ -311,35 +257,35 @@ const projectForm = () =>{
   <label for="exampleFormControl" class="form-label">Description (optional)</label>
   <textarea class="form-control" id="pForm_description" placeholder="Description"></textarea>
   <button type="submit" class="btn btn-success pinned-btn" id="projectButton">Create project</button>
-</div>`
-renderToDom("#create-project-form", formString)
-};  
-//create a function that grabs all the values from the form, pushes the new object to the array, 
-//then repaints the DOM with the new project
-const newProject = () => {
+</div>`;
+    renderToDom("#create-project-form", formString);
+  };
+  //create a function that grabs all the values from the form, pushes the new object to the array,
+  //then repaints the DOM with the new project
+  const newProject = () => {
     const newProjectObject = {
       id: projects.length + 1,
       title: document.querySelector("#pForm_name").value,
       description: document.querySelector("#pForm_description").value,
-      lastUpdated: "Just now"
-    }
-  projects.push(newProjectObject);
-  projectsOnDom(projects);
-  projForm.reset();
-}
+      lastUpdated: "Just now",
+    };
+    projects.push(newProjectObject);
+    projectsOnDom(projects);
+    projForm.reset();
+  };
 
-
-// Repos on DOM for repos page 
-const cardsOnDom = (array) => {
-  let repoExamplesDomString = "";
-array.map((repo) => {
-    repoExamplesDomString += 
-    `<div class="repo-card" style="width: 61rem;">
+  // Repos on DOM for repos page
+  const cardsOnDom = (array) => {
+    let repoExamplesDomString = "";
+    array.map((repo) => {
+      repoExamplesDomString += `<div class="repo-card" style="width: 61rem;">
     <div class="repo-card-body">
       <h5 class="card-title" style="color: #0969DA">${repo.name}</h5>
       <p class="card-text">${repo.description}</p>
       ${repo.tags ? `<span>${repo.tags[0].tName}</span>` : ""}
-      ${repo.language ? `
+      ${
+        repo.language
+          ? `
   <div class="language-container">
     <span class="language-circle" style="background-color: ${
       repo.language === "Javascript"
@@ -362,18 +308,18 @@ array.map((repo) => {
       </svg>
     </a>
   </div>
-` : ""} 
+`
+          : ""
+      } 
     </div>
-  </div>`
-  });
-      renderToDom("#listed-repos", repoExamplesDomString);
-};
+  </div>`;
+    });
+    renderToDom("#listed-repos", repoExamplesDomString);
+  };
 
-
-// renders form for repo page
-const repoFormOnDom = () => {
-  let domFormString = 
-  `<div class="mb-3">
+  // renders form for repo page
+  const repoFormOnDom = () => {
+    let domFormString = `<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Create a New Repository </label>
   <input type="text" class="form-control" id="repo_name" placeholder="Name">
 </div>
@@ -381,14 +327,12 @@ const repoFormOnDom = () => {
   <label for="exampleFormControlTextarea1" class="form-label">Description (optional)</label>
   <input type="text" class="form-control" id="repo_description">
   <button type="submit" class="btn btn-primary" id="cRepoBtn" style="margin-top: 7px; background-color: green; color: white;" ;>Create Repository</button>
-</div>`
-;
-    renderToDom("#repo-form", domFormString)
-};
+</div>`;
+    renderToDom("#repo-form", domFormString);
+  };
 
-
-// created bew reos for repo page
-const createNewRepo = () => {
+  // created bew reos for repo page
+  const createNewRepo = () => {
     const newRepoObj = {
       id: repoExamples.length + 1,
       name: document.querySelector("#repo_name").value,
@@ -397,78 +341,63 @@ const createNewRepo = () => {
       tag: [],
     };
     repoExamples.push(newRepoObj);
-    cardsOnDom(repoExamples)
+    cardsOnDom(repoExamples);
     repoForm.reset();
-}
+  };
 
-// const startApp = () => {
-//   sideBarOnDom();
-//   switch (currentPage) {
-//     case "index.html":
-//       pinnedOnDom(repoExamples);
-//       pinnedFormOnDom();
-//       break;
-//     case "repos.html":
-//       cardsOnDom(repoExamples);
-//       repoFormOnDom();
-//       break;
-//     case "project.html":
-//       projectsOnDom(projects);
-//       projectForm();
-//       break;
-//     default:
-//       console.log("No specific JavaScript for this page.");
-//   }
-// };
-
-// startApp();
-
-const getData = () => {
-  const page = document.body.id;
-  switch (page) {
-    case "main":
-      pinnedOnDom(repoExamples);
-      pinnedFormOnDom();
-      break;
-    case "repoBody":
-      cardsOnDom(repoExamples);
-      repoFormOnDom();
-      break;
-      case "projBody":
-      projectsOnDom(projects);
-      projectForm();
-      break;
-
+  // event listener for the pin form btn
+  const pinnedForm = document.querySelector("#create-pinned-form");
+  if (pinnedForm) {
+    pinnedForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      createPinnedRepo();
+    });
   }
-};
 
-const starApp = () => {
-  sideBarOnDom();
-  getData();
-}
-starApp();
+  // event listener for the repo form btn
+  const repoForm = document.querySelector("#repo-form");
+  if (repoForm) {
+    repoForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      createNewRepo();
+    });
+  }
 
-const pinnedForm = document.querySelector("#create-pinned-form");
-if (pinnedForm) {
-  pinnedForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    createPinnedRepo();
-  });
-}
+  // event listener for the project form btn
+  const projForm = document.querySelector("#create-project-form");
+  if (projForm) {
+    projForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      newProject();
+    });
+  }
 
-const repoForm = document.querySelector('#repo-form')
-if (repoForm) {
-  repoForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    createNewRepo();
-  });
-}
+  // funtion that find the id in the body tag and then start a switch statment
+  const getData = () => {
+    // retrieves the id property of the document.body element
+    const page = document.body.id;
 
-const projForm = document.querySelector("#create-project-form");
-if (projForm) {
-  projForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    newProject();
-  });
-}
+    // Use a switch statement to check the value of the 'page' variable
+    switch (page) {
+      case "main":
+        pinnedOnDom(repoExamples);
+        pinnedFormOnDom();
+        break;
+      case "repoBody":
+        cardsOnDom(repoExamples);
+        repoFormOnDom();
+        break;
+      case "projBody":
+        projectsOnDom(projects);
+        projectForm();
+        break;
+    }
+  };
+
+  // start app will call the side profile area and the get data switch statment
+  const starApp = () => {
+    sideBarOnDom();
+    getData();
+  };
+  starApp();
 });
